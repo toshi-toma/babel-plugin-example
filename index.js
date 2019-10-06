@@ -1,8 +1,5 @@
-const { transform } = require("@babel/core");
-
-const src = "var foo = 'foo'";
-
-const plugin = ({ types }) => ({
+module.exports = ({ types }) => ({
+  name: "var-to-const",
   visitor: {
     VariableDeclaration: ({ node }) => {
       if (node.kind === "var") {
@@ -12,5 +9,3 @@ const plugin = ({ types }) => ({
   }
 });
 
-const { code } = transform(src, { plugins: [plugin] });
-console.log(code);
